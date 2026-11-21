@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <script type="module" src="./admin.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>CinéTrack/Administration</title>
+
+</head>
+
+<body class="min-h-screen bg-[#101113] text-zinc-100">
+
+  <div class="background-container">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+  </div>
+
+
+    <header class="relative flex items-center gap-8 border-b border-zinc-700 bg-[#111214] px-5 py-3 lg:px-8 ">
+      <div class="flex flex w-full items-center justify-between ">
+        <h1 class="">
+            <img src="img/LogoAdmin.png" class=" w-50 h-20" alt="CinéTrack">
+        </h1>
+
+
+       <nav class="navigation ">
+    <ul class = "menu  flex flex-wrap justify-center items-center gap-3">
+        <li><a id="admin" href="index.html" class="text-white font-[Monoton] transition-all duration-300 ease-in-out hover:text-[#e70634] text-lg sm:text-2xl  ">Home</a></li>
+    </ul>
+       </nav>
+       </div>
+
+
+    </header>
+
+    <main class="relative mx-auto max-w-[1600px] px-4 py-6 sm:px-8">
+
+        <h1 class="text-3xl font-bold sm:text-5xl">Administration</h1>
+        <p class="mt-1 text-lg text-zinc-300">Gérez vos films et vos séries</p>
+
+    <p id="status" role="status"></p>
+    <div class="mt-6 grid items-start gap-5 xl:grid-cols-[minmax(0,1.8fr)_minmax(0,1fr)]">
+      <div class=" min-w-0 rounded-2xl border border-zinc-800 bg-[#18191c] p-3 sm:p-5">
+            <h2 class="mb-5 border-l-[6px] border-rose-600 pl-4 text-2xl font-bold">Films et séries</h2>
+
+            <div class="filter mb-6 grid gap-3 sm:grid-cols-[1.7fr_1fr]">
+
+            <input class="w-full rounded-lg border border-zinc-600 bg-[#202226] px-4 py-3 outline-none focus:border-rose-500" type="search" id="searshBar" placeholder=" search ...">
+
+            <select class="w-full rounded-lg border border-zinc-600 bg-[#202226] px-4 py-3 outline-none focus:border-rose-500" id="selectType" required>
+              <option value="">Chose a type</option>
+              <option value="movie">Movies</option>
+              <option value="series">Series</option>
+            </select>
+
+            
+
+         
+
+
+       </div>     
+
+        
+        <table class="block w-full overflow-x-auto text-left [&>thead]:table [&>thead]:w-full [&>thead]:min-w-[540px] [&>thead]:table-fixed [&>tbody]:table [&>tbody]:w-full [&>tbody]:min-w-[540px] [&>tbody]:table-fixed md:table md:[&>thead]:table-header-group md:[&>tbody]:table-row-group">
+
+            <thead>
+            <tr class="headTable bg-[#23252a] [&>th]:px-4 [&>th]:py-3 ">
+                <th class="w-80">contenu</th>
+                <th class="w-20">type</th>
+                <th class="w-20">Année</th>
+                <th class="w-40 items-center">Actions</th>
+            </tr>
+            </thead>
+
+
+            <tbody>
+            <tr class="headTable bg-[#23252a] [&>th]:px-4 [&>th]:py-3">
+            <td class="align-top [&_img]:h-20 [&_img]:w-14 [&_img]:shrink-0 [&_img]:rounded-md [&_img]:object-contain " id="adminCard" >
+            <br><h3 class="align-top" id="titleCard"></h3>
+            </td> 
+            <td class="align-top " id="typeCard" ></td>
+            <td class="align-top " id="dateCard" ></td>
+            <td class="align-top">
+            <div class="flex gap-2">  
+            <div class="grid auto-rows-[7rem] items-center [&_button]:h-fit" id="admiButton"> </div>
+            <div class="grid auto-rows-[7rem] items-center [&_button]:h-fit" id="deleteButton"> </div>
+            </div>         
+            </td>
+            </tr>
+            </tbody>
+
+            
+        </table>
+
+         <nav class="pagination mt-5 flex flex-wrap items-center justify-center gap-2 sm:gap-4">
+
+      <button id="prevBtn" class="btn1  bg-red-600 p-2 text-xl font-bold rounded-xl  hover:bg-red-800 " > prev </button>
+      
+      <span id="page-numbers" class="bg-red-600 p-2 text-xl font-bold rounded-xl  hover:bg-red-800"></span>
+      <button id="nextBtn" class="btn2 bg-red-600 p-2 text-xl font-bold rounded-xl  hover:bg-red-800">next  </button>
+    
+  </nav>
+     </div >
+
+     <aside class="min-w-0 rounded-2xl border border-zinc-800 bg-[#18191c] p-3 sm:p-5">
+
+        <h2 id="formTitle" class="mb-5 border-l-[6px] border-rose-600 pl-4 text-2xl font-bold">Ajouter un contenu</h2>
+
+        <form id="filmForm"><fieldset id="filmFields"><table class="gap-4" id="admintabel">
+          <tr class="p-4">
+            <td>
+            <h3 class="text-white text-xl font-bold">title</h3>
+            <input id="filmTitle" required type="text" placeholder="enter title" class="w-full rounded-lg border border-zinc-500 bg-[#202226] px-3 py-2 text-white placeholder:text-zinc-400 outline-none focus:border-rose-500">
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+            <h3 class="text-white text-xl font-bold">Type</h3>
+             <select id="filmType" required class="w-full rounded-lg border border-zinc-500 bg-[#202226] px-3 py-2 text-white placeholder:text-zinc-400 outline-none focus:border-rose-500">
+              <option value="">Chose a type</option>
+              <option value="movie">Movies</option>
+              <option value="series">Series</option>
+            </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+            <h3 class="text-white text-xl font-bold">Année de sortie</h3>
+            <input id="filmYear" required type="number" min="1000" max="9999" placeholder="Ew : 2015" class="w-full rounded-lg border border-zinc-500 bg-[#202226] px-3 py-2 text-white placeholder:text-zinc-400 outline-none focus:border-rose-500">
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+          <h3 class="text-white text-xl font-bold">URL de l'image</h3>
+            <img id="preview" hidden class="w-20" alt="Aperçu">
+            <input id="filmImage" required type="url" pattern="https?://.+" placeholder="Ew : Ex: http" class="w-full rounded-lg border border-zinc-500 bg-[#202226] px-3 py-2 text-white placeholder:text-zinc-400 outline-none focus:border-rose-500">
+           </td>
+          </tr>
+
+          <tr>
+            <td>
+            <h3 class="text-white text-xl font-bold">Description</h3>
+            <textarea id="filmDescription" required placeholder="Ew : 2015" class="w-full rounded-lg border border-zinc-500 bg-[#202226] px-3 py-2 text-white placeholder:text-zinc-400 outline-none focus:border-rose-500"></textarea>
+            </td>
+          </tr>
+
+          <tr >
+            <td class="justify-between  flex">
+              <button id="ajoutModify" type="submit" class="bg-red-600 p-2 text-xl font-bold rounded-xl  hover:bg-red-800 transition-transform duration-150 active:scale-95">Ajouter</button><br>
+              <button id="anuler" type="button" class="bg-gray-600 p-2 text-xl font-bold rounded-xl  hover:bg-gray-800 transition-transform duration-150 active:scale-95">Annuler</button>
+
+            </td>
+          </tr>
+
+        </table></fieldset></form>
+     </aside>
+    </div>
+
+    </main>
+
+    <footer>
+
+    </footer>
+    
+</body>
+
+</html>
